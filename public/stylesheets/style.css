@@ -6,3 +6,40 @@ body {
 a {
   color: #00B7FF;
 }
+
+html,body{
+  margin:0;
+  padding:0;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+
+  padding: 0;
+  overflow: hidden;
+  background-color: rgb(67, 133, 155);
+}
+
+li {
+  float: left;
+}
+
+li a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+#banner{
+
+  background-color: rgb(54, 107, 124);
+  color:  rgb(255, 255, 255);
+  text-align: center;
+  font-size: 25pt;
+}
+
+li a:hover {
+    background-color: rgb(54, 107, 124);
+}
