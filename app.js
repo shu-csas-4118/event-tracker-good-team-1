@@ -4,6 +4,13 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var book = require('./controllers/book/index');
+var confirmation = require('./controllers/confirmation/index');
+var homepage = require('./controllers/home/index');
+var login = require('./controllers/login/index');
+var register = require('./controllers/register/index');
+var searchResults = require('./controllers/searchResults/index');
+
 var app = express();
 
 // view engine setup
@@ -17,6 +24,12 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/', homepage);
+app.use('/login', login);
+
+
+
 
 app.listen(8080);
 
