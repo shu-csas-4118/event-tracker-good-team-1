@@ -13,6 +13,10 @@ var searchResults = require('./controllers/searchResults/index');
 
 var app = express();
 
+//DB DEMO
+var Account = require('./models/account').account;
+new Account().getAccountbyID(0);
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

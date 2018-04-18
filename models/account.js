@@ -1,15 +1,13 @@
-const db = require('db');
+const db = require('./db').db;
 
-module.exports = function(){
+exports.account = function Account(){
     this.unique_id;
     this.username;
     this.password;
     this.address;
 
     this.getAccountbyID = function(id){
-        //db.doSomething();
-
-        //return the value
+        console.log(db[id]);
     }
 
 };
