@@ -1,18 +1,33 @@
 const MongoClient = require('mongodb').MongoClient;
-const databaseURL = "mongodb://localhost:27107";
+const databaseURL = "mongodb://127.0.0.1:27017";
 
-let mongoDB;
+let _db;
 
-MongoClient.connect(databaseURL, function(err, client){
+const connectToServer = function(callback){
+  MongoClient.connect(databaseURL, function (err, db){
 
-  if(!err)
-    console.log("Connected!");
+    if(err) console.error(err);
+    else{
+      _db = db.db();
 
-  client.createCollection('accounts', {strict:true}, function(err, collection) {
-    console.log("Created collection!");
+      _db.createCollection('accounts', function(err, collection){
+        if(err)
+          console.error(err);
+        else console.log("\nCollection 'accounts' has been created!");
+      });
+
+      _db.createCollection('events', function (err, collection) {
+        if(err)
+          console.log(err);
+        else console.log("\nCollection 'events' has been created!");
+      });
+
+      return callback(err);
+    }
+
   });
+};
 
-  mongoDB = client.db();
+const getDB = () => _db;
 
-});
-
+module.exports = { connectToServer, getDB };
