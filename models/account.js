@@ -1,30 +1,37 @@
 const db = require('./db').db;
 const hash = require('./utils/hash').hash;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
-function Account(username, password, address){
-    this._username = username || "";
-    this._password = hash(password);
-    this._address = address || "";
+const AccountSchema = new Schema({
+   username: {
+       type: String,
+       max: 15,
+       required: true
+   },
+   password:{
+       type: String,
+       set: hash,
+       required: true
+   },
+   address:{
+       type: String,
+       required: true
+   }
+});
 
-    this.getUsername = () => this._username;
-    this.getPasswordDigest = () => this._password;
-    this.getAddress = () => this._address;
+AccountSchema.methods.passwordMatches = function(pass){
+    return pass === this.password;
+};
 
-    this.changeUsername = (user) => this._username = user;
-    this.changePassword = (pass) => this._password = hash(pass);
-
-    this.passwordMatches = (pass) => this._password === hash(pass);
-}
-
-//Static Functions
-
-Account.getAccountByID = function(){
+AccountSchema.statics.getAccountByID = function(){
 
 };
 
-Account.getAccounts = function(){
+AccountSchema.statics.getAccounts = function(){
 
 };
 
+const Account = mongoose.model('Account', AccountSchema);
 
-exports.account = Account;
+module.exports = Account;
