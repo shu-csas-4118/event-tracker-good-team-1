@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "start": "node ./bin/www",
-    "test": "mocha tests/event.spec.js"
+    "test": "mocha tests/**/**.spec.js"
   },
   "dependencies": {
     "body-parser": "~1.18.2",
