@@ -21,7 +21,7 @@ const AccountSchema = new Schema({
 });
 
 AccountSchema.methods.passwordMatches = function(pass){
-    return pass === this.password;
+    return hash(pass) === this.password;
 };
 
 AccountSchema.statics.getAccountByID = function(){

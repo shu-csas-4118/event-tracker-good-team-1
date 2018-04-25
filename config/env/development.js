@@ -6,7 +6,7 @@
         port: 8081
     },
     mongodb: {
-        url: ""
+        url: "mongodb://127.0.0.1/eventtrack"
     },
     logger: {
         logLevel:  'debug', // Default to this if the environment variable LOG_LEVEL is not set
