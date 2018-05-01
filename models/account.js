@@ -1,9 +1,9 @@
-const db = require('./db').db;
 const hash = require('./utils/hash').hash;
-const mongoose = require('mongoose');
+const mongoose = require('./db');
 const Schema = mongoose.Schema;
 
 const AccountSchema = new Schema({
+   _id: Schema.Types.ObjectId,
    username: {
        type: String,
        max: 15,
@@ -11,7 +11,7 @@ const AccountSchema = new Schema({
    },
    password:{
        type: String,
-       set: hash,
+       set: x => hash(x),
        required: true
    },
    address:{
@@ -21,15 +21,7 @@ const AccountSchema = new Schema({
 });
 
 AccountSchema.methods.passwordMatches = function(pass){
-    return pass === this.password;
-};
-
-AccountSchema.statics.getAccountByID = function(){
-
-};
-
-AccountSchema.statics.getAccounts = function(){
-
+    return hash(pass) === this.password;
 };
 
 const Account = mongoose.model('Account', AccountSchema);

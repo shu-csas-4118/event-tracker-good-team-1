@@ -1,33 +1,17 @@
-const MongoClient = require('mongodb').MongoClient;
+const mongoose = require('mongoose');
 const databaseURL = "mongodb://127.0.0.1:27017";
 
-let _db;
+mongoose.connect(databaseURL).then(console.log(`Mongoose Connection opened on ${databaseURL}`));
 
-const connectToServer = function(callback){
-  MongoClient.connect(databaseURL, function (err, db){
+mongoose.connection.on('error', (err) => console.log(`There was an error connecting to Mongo. \n${err}`));
 
-    if(err) console.error(err);
-    else{
-      _db = db.db();
+mongoose.connection.on('disconnected', () => console.log(`Disconnected from Mongo at port ${databaseURL}`));
 
-      _db.createCollection('accounts', function(err, collection){
-        if(err)
-          console.error(err);
-        else console.log("\nCollection 'accounts' has been created!");
-      });
+process.on('SIGINT', function() {
+    mongoose.connection.close(function () {
+        console.log('Server shutting down, closing Mongo connection...');
+        process.exit(0);
+    });
+});
 
-      _db.createCollection('events', function (err, collection) {
-        if(err)
-          console.log(err);
-        else console.log("\nCollection 'events' has been created!");
-      });
-
-      return callback(err);
-    }
-
-  });
-};
-
-const getDB = () => _db;
-
-module.exports = { connectToServer, getDB };
+module.exports = mongoose;

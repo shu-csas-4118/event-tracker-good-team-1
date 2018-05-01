@@ -3,13 +3,15 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let MongoDB = require('./models/db');
+let mongoose = require('./models/db');
 let book = require('./controllers/book/index');
 let confirmation = require('./controllers/confirmation/index');
 let homepage = require('./controllers/home/index');
 let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
+let Account = require('./models/account');
+let Event = require('./models/event');
 
 let app = express();
 
@@ -28,14 +30,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homepage);
 app.use('/login', login);
 
-MongoDB.connectToServer(function(err){
-  if(err)
-    console.error("Client could not complete connection to the database!");
-  else console.log("Server has completed setup. Connected to Mongo.")
-});
-
 app.listen(8080);
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
