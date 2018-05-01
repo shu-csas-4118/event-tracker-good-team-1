@@ -2,12 +2,14 @@
 
 const expect = require('chai').expect;
 const mongoose = require('mongoose');
+const config = require('../config/env/development');
 const Account = require("../models/account");
+const hash = require('../models/utils/hash').hash;
 
 describe('Tests for user account', () => {
 
 	before((done) => {
-		const db = mongoose.connect('mongodb://localhost/eventtrack');
+		const db = mongoose.connect(config.mongodb.url);
 		done();
 	});
 
@@ -30,15 +32,22 @@ describe('Tests for user account', () => {
 	});
 
 	it('should find a user by their username', (done) => {
-		Account.findOne({ username: 'john.doe@shu.edu' }, (err, account) => {
+		Account.findOne({ username: 'john_doe' }, (err, account) => {
 			expect(account.username).to.eql('john_doe');
 			done();
 		});
 	});
 
-	/*afterEach((done) => {
+	it('should check if the password matches', (done) => {
+		Account.findOne({ username: 'john_doe' }, (err, account) => {
+			expect(account.password).to.eql(hash('password'));
+			done();
+		});
+	});
+
+	afterEach((done) => {
 		Account.remove({}, () => {
 			done();
 		});
-	});*/
+	});
 });
