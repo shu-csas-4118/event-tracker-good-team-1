@@ -3,11 +3,10 @@
 const expect = require('chai').expect;
 const mongoose = require('../models/db');
 const config = require('../config/env/development');
-const Account = require("../models/account");
-const hash = require('../models/utils/hash').hash;
-const AccountId = mongoose.Types.ObjectId;
+const Event = require("../models/event");
+const EventId = mongoose.Types.ObjectId;
 
-describe('Tests for user account', () => {
+describe('Tests for event creation', () => {
 
 	before((done) => {
 		const db = mongoose.connect(config.mongodb.url);
@@ -20,25 +19,28 @@ describe('Tests for user account', () => {
 	});
 
 	beforeEach( (done) => {
-		var account = new Account({
-			_id: new AccountId(),
-			username: 'john_doe',
-			password: 'password',
-			address: 'john.doe@shu.edu'
+		var _event = new Event({
+			_id: EventId(),
+			name: 'Coachella 2019',
+			time: new Date('2019-04-13'),
+			capacity: 1000,
+			attendees: [],
+			place: {}
 		});
 
-		account.save((error) => {
+		_event.save((error) => {
 			if (error) console.log('error ' + error.message);
 			done();
 		});
 	});
 
-	it('should find a user by their username', (done) => {
-		Account.findOne({ username: 'john_doe' }, (err, account) => {
-			expect(account.username).to.eql('john_doe');
+	it('should find an event based on a search', (done) => {
+		Event.findOne({ name : 'Coachella 2019' }, (err, penis) => {
+			expect(penis.capacity).to.eql(1000);
 			done();
 		});
 	});
+	/*
 
 	it('should check if the password matches', (done) => {
 		Account.findOne({ username: 'john_doe' }, (err, account) => {
@@ -46,9 +48,10 @@ describe('Tests for user account', () => {
 			done();
 		});
 	});
+	*/
 
 	afterEach((done) => {
-		Account.remove({}, () => {
+		Event.remove({}, () => {
 			done();
 		});
 	});
