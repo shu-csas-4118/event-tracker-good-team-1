@@ -20,7 +20,7 @@ describe('Tests for event creation', () => {
 
 	beforeEach( (done) => {
 		var _event = new Event({
-			_id: EventId(),
+			_id: new EventId(),
 			name: 'Coachella 2019',
 			time: new Date('2019-04-13'),
 			capacity: 1000,
@@ -35,8 +35,8 @@ describe('Tests for event creation', () => {
 	});
 
 	it('should find an event based on a search', (done) => {
-		Event.findOne({ name : 'Coachella 2019' }, (err, penis) => {
-			expect(penis.capacity).to.eql(1000);
+		Event.findOne({ name : 'Coachella 2019' }, (err,_event) => {
+			expect(_event.capacity).to.eql(1000);
 			done();
 		});
 	});
