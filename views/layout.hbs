@@ -53,16 +53,28 @@ li a:hover {
    Events Tracker
   <br>
   <br>
-
+ 
 </div>
 <ul >
   <li ><a class="active" href="/">Home</a></li>
   <li ><a href="/login">Login</a></li>
    <li ><a href="/events">Events</a></li>
-  <li style="float:right; padding-right:5%; padding-top:1%; padding-bottom:1%"> <input class="form-control" value= "Search"></input></li>
+   <li style="float:right; padding-right:5%; padding-top:1%; padding-bottom:1%"> <div class="btn-group">
+    <button onclick="myclick();" class="btn btn-primary active">
+        <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
+    </button></li>
+  <li style="float:right; padding-right:5%; padding-top:1%; padding-bottom:1%"> <input id="searchBar"class="form-control" value= "Search"></input></li>
+  
 </ul>
 
     {{{body}}}
   </body>
 </html>
-
+<script>
+  function myclick()
+{
+    var search = document.getElementById("searchBar").value;
+    location.href = "/events?search="+ search +"";
+    alert("hello");
+} 
+</script>

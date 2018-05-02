@@ -28,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', homepage);
 app.use('/login', login);
+app.use('/events', searchResults);
 
 const acc = new Account();
 
