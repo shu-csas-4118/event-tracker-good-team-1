@@ -22,8 +22,24 @@ const EventSchema = new Schema({
     place:{
         type: {},
         required: true
+    },
+    price:{
+	type: Number,
+	required: true
     }
 });
+
+EventSchema.methods.getEventName = function() {
+	return this.name;
+}
+
+EventSchema.methods.getEventTime = function() {
+	return this.time;
+}
+
+EventSchema.methods.getEventPrice = function() {
+	return this.price;
+}
 
 const Event = mongoose.model("Event", EventSchema);
 

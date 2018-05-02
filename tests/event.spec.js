@@ -18,14 +18,15 @@ describe('Tests for event creation', () => {
 		done();
 	});
 
-	beforeEach( (done) => {
+	beforeEach((done) => {
 		var _event = new Event({
 			_id: new EventId(),
 			name: 'Coachella 2019',
 			time: new Date('2019-04-13'),
 			capacity: 1000,
 			attendees: [],
-			place: {}
+			place: {},
+			price: 440
 		});
 
 		_event.save((error) => {
@@ -34,21 +35,21 @@ describe('Tests for event creation', () => {
 		});
 	});
 
-	it('should find an event based on a search', (done) => {
-		Event.findOne({ name : 'Coachella 2019' }, (err,_event) => {
-			expect(_event.capacity).to.eql(1000);
+	it('should check if the price matches', (done) => {
+		Event.findOne({ name : "Coachella 2019" }, (err, _event) => {
+			expect(_event.price).to.eql(440);
 			done();
 		});
 	});
-	/*
+	
 
-	it('should check if the password matches', (done) => {
-		Account.findOne({ username: 'john_doe' }, (err, account) => {
-			expect(account.password).to.eql(hash('password'));
+	it('should find an event by capacity and return the Coachella event', (done) => {
+		Event.findOne({ capacity: 1000 }, (err, _event) => {
+			expect(_event.name).to.eql("Coachella 2019");
 			done();
 		});
 	});
-	*/
+	
 
 	afterEach((done) => {
 		Event.remove({}, () => {
