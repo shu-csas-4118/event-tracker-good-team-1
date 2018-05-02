@@ -1,7 +1,7 @@
 'use strict';
 
 const expect = require('chai').expect;
-const mongoose = require('../models/db');
+const mongoose = require('mongoose');
 const config = require('../config/env/development');
 const Event = require("../models/event");
 const EventId = mongoose.Types.ObjectId;
