@@ -3,7 +3,7 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
-let mongoose = require('./models/db');
+let MongoDB = require('./models/db');
 let book = require('./controllers/book/index');
 let confirmation = require('./controllers/confirmation/index');
 let homepage = require('./controllers/home/index');
@@ -11,7 +11,6 @@ let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
 let Account = require('./models/account');
-let Event = require('./models/event');
 
 let app = express();
 
@@ -30,7 +29,19 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homepage);
 app.use('/login', login);
 
+const acc = new Account();
+
+acc.username = "ghostocean52";
+acc.password = "Adriano14";
+acc.address = "A Place";
+
+console.log(acc);
+
+acc.save();
+
+
 app.listen(8080);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
