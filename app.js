@@ -11,8 +11,37 @@ let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
 let Account = require('./models/account');
+let passport = require('passport');
+let LocalStrategy = require('passport-local').Strategy;
+let session = require('express-session');
 
 let app = express();
+
+
+app.use(session({secret: 'i really love dr racket'}));
+
+
+
+let strat = new LocalStrategy({}, function(username, password, next){
+    Account.findOne({'username' : username}, function(error, account){
+      if(error)
+        return next(error);
+      if(!account || !account.passwordMatches(pass))
+        return next(null, false);
+      else
+        return next(null, account);
+    })
+  }
+);
+
+passport.serializeUser((user, next) => next(null, user._id));
+
+passport.deserializeUser((id, next) => Account.findById(id, (err, user) => next(err, user)));
+
+//authentication setup
+passport.use(strat);
+app.use(passport.initialize());
+app.use(passport.session());
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const databaseURL = "mongodb://127.0.0.1:27017";
 
-mongoose.connect(databaseURL).then(console.log(`Mongoose Connection opened on ${databaseURL}`));
+mongoose.connect(databaseURL).then(() => console.log(`Mongoose Connection opened on ${databaseURL}`));
 
 mongoose.connection.on('error', (err) => console.log(`There was an error connecting to Mongo. \n${err}`));
 

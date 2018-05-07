@@ -1,12 +1,17 @@
-var express = require('express');
-var router = express.Router();
+let express = require('express');
+let router = express.Router();
+let passport = require('passport');
 //const Event = require('../../models/event').Event;
 
 //var myEvent = new Event({});
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('homeViews/home', { title: "title", element2:"Event2",element3: "event3"});
-  
-});
+router.get('/',
+
+  passport.authenticate('local', {successRedirect: '/', failureRedirect: 'login', failureFlash: true}),
+
+  (req, res, next) => res.render('homeViews/home', { /*USER ID*/id: req.session.user,
+    title: "title", element2:"Event2",element3: "event3"})
+
+);
 
 module.exports = router;
