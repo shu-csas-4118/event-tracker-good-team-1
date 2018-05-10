@@ -7,8 +7,6 @@ let passport = require('passport');
 /* GET home page. */
 router.get('/',
 
-  passport.authenticate('local', {successRedirect: '/', failureRedirect: 'login', failureFlash: true}),
-
   (req, res, next) => res.render('homeViews/home', { /*USER ID*/id: req.session.user,
     title: "title", element2:"Event2",element3: "event3"})
 

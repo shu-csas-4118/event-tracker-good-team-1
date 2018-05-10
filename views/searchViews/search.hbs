@@ -1,8 +1,26 @@
-
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <script src="event.js" type="text/javascript"></script>
 
-<h1>Displays Event Search Result</h1>
-<h2>{{mytitle}}</h2>
+{{#each events}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="jumbotron jumbotron-fluid">
+          <h2>
+            {{this.name}}
+          </h2>
+          <div>
+            <ul style="display: block;">
+              <li>Time: {{this.time}}</li><br>
+              <li>Capacity: {{this.capacity}}</li><br>
+              <li>Price: {{this.price}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{{/each}}
+

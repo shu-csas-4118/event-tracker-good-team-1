@@ -11,6 +11,7 @@ let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
 let Account = require('./models/account');
+let Event = require('./models/event');
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
 let session = require('express-session');
@@ -18,7 +19,11 @@ let session = require('express-session');
 let app = express();
 
 
-app.use(session({secret: 'i really love dr racket'}));
+app.use(session({
+  secret: 'i really love dr racket',
+  resave: false,
+  saveUninitialized: true
+}));
 
 
 
@@ -37,6 +42,18 @@ let strat = new LocalStrategy({}, function(username, password, next){
 passport.serializeUser((user, next) => next(null, user._id));
 
 passport.deserializeUser((id, next) => Account.findById(id, (err, user) => next(err, user)));
+
+const e = new Event();
+
+e.name = "Data Talk";
+e.time = new Date();
+e.capacity = 10;
+e.attendees = [];
+e.place = {};
+e.price = 100;
+
+e.save();
+console.log(e);
 
 //authentication setup
 passport.use(strat);
@@ -58,16 +75,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', homepage);
 app.use('/login', login);
 app.use('/events', searchResults);
-
-const acc = new Account();
-
-acc.username = "ghostocean52";
-acc.password = "Adriano14";
-acc.address = "A Place";
-
-console.log(acc);
-
-acc.save();
 
 
 app.listen(8080);
