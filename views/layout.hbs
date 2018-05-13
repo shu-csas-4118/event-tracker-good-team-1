@@ -20,10 +20,10 @@
 
       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-              <li>
+              <li class="nav-bar-li">
                   <a href="/">Home</a>
               </li>
-              <li>
+              <li class="nav-bar-li">
                   <a href="/events">Events</a>
               </li>
           </ul>
@@ -40,10 +40,10 @@
                   <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<strong class="caret"></strong></a>
                   {{#unless user}}
                       <ul class="dropdown-menu">
-                          <li>
+                          <li class="nav-bar-li">
                               <a href="/login">Log In</a>
                           </li>
-                          <li>
+                          <li class="nav-bar-li">
                               <a href="/login">Sign Up</a>
                           </li>
                           <li class="divider">
@@ -52,6 +52,19 @@
                               <a href="#">Logout</a>
                           </li>
                       </ul>
+                  {{else}}
+                    <ul class="dropdown-menu">
+                      <li style="text-align: center">
+                        <p>Hello, {{user.username}}</p>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="/account">Account Settings</a>
+                      </li>
+                      <li>
+                        <a href="#">My Registered Events</a>
+                      </li>
+                    </ul>
                   {{/unless}}
               </li>
           </ul>

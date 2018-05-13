@@ -11,6 +11,7 @@ router.get('/', function(req, res, next) {
 
 router.post('/',
     passport.authenticate('local', {failureRedirect: '/login',}), function(req, res, next){
+    console.log(`Authenticated user ${req.user.username}`);
     res.status(302).redirect('/');
 });
 
@@ -20,8 +21,10 @@ router.post('/register', function(req, res, next){
     Account.findOne({username: body.username}, function(error, account){
         if(error)
             console.error(error.message);
-        if(account)
-            res.status(400).redirect('/login');
+        if(account){
+          console.warn('Account already exists!');
+          res.status(400).redirect('/login');
+        }
         else{
             let acct = new Account();
             acct.username = body.username;

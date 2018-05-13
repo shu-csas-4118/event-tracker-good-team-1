@@ -7,6 +7,44 @@ input .signup{
     padding-top: 10px !important;
 }
 
-li:hover{
+.nav-bar-li:hover{
     background-color: lightgrey;
+}
+
+/*ACCOUNT CSS ---------------------------------------------*/
+
+.jumbotron-account{
+  width: 70%;
+  margin: 20px auto;
+  background-color: rgba(0,0,0,.05) !important;
+  border: 2px solid rgba(0,0,0,.5);
+}
+
+.event-panel{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: black;
+  padding: 30px 30px;
+  border: 3px solid mediumvioletred;
+  border-radius: 10px;
+  background-color: white;
+  display:table;
+  width:100%;
+}
+
+.cancel {
+  background: transparent no-repeat;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
+  font: 25px bold;
+  font-family: Arial, serif;
+}
+
+.button-wrapper {
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
 }

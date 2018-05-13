@@ -15,13 +15,13 @@ let homepage = require('./controllers/home/index');
 let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
+let account = require('./controllers/account/index');
 
 //Import utilities
 let passport = require('./models/utils/passport');
 let mongoose = require('./models/db');
 
 //Use statements
-app.use(passport.initialize());
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -32,23 +32,27 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }));
+app.use(passport.initialize());
+app.use(passport.session());
 
+app.use(function(req, res, next){
+  console.log(`Local variable user is: ${req.user ? req.user.username : undefined}`);
+  res.locals.user = req.user;
+  next();
+});
 
 //Set statements
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerHelper('if_logged_in', function(a, b, opts){
-    
-
-});
 
 //Controllers / Route setup
 app.use('/', homepage);
 app.use('/login', login);
 app.use('/events', searchResults);
+app.use('/account', account);
 
 //Launch app
-let port = process.env.PORT || 8080;
+const port = process.env.PORT || 8080;
 app.listen(port, () => console.log(`Node is listening on port: ${port}`));
 
 // catch 404 and forward to error handler
