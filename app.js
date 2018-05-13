@@ -6,6 +6,7 @@ let path = require('path');
 let logger = require('morgan');
 let cookieParser = require('cookie-parser');
 let bodyParser = require('body-parser');
+let hbs = require('hbs');
 
 //Import controllers
 let book = require('./controllers/book/index');
@@ -36,6 +37,10 @@ app.use(session({
 //Set statements
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+hbs.registerHelper('if_logged_in', function(a, b, opts){
+    
+
+});
 
 //Controllers / Route setup
 app.use('/', homepage);

@@ -15,8 +15,27 @@ router.post('/',
 });
 
 router.post('/register', function(req, res, next){
-    
+    let body = req.body;
 
+    Account.findOne({username: body.username}, function(error, account){
+        if(error)
+            console.error(error.message);
+        if(account)
+            res.status(400).redirect('/login');
+        else{
+            let acct = new Account();
+            acct.username = body.username;
+            acct.password = body.password;
+            acct.address = body.address;
+
+            console.log(`Adding user ${body.username} to Account store.`);
+            acct.save();
+
+            res.status(302).redirect('/');
+        }
+    });
+
+    next();
 });
 
 module.exports = router;
