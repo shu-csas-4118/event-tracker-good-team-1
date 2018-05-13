@@ -1,13 +1,10 @@
 let express = require('express');
 let router = express.Router();
 let passport = require('passport');
-//const Event = require('../../models/event').Event;
+let path = require('path');
 
-//var myEvent = new Event({});
-/* GET home page. */
 router.get('/',
-
-  (req, res, next) => res.render('homeViews/home', { /*USER ID*/id: req.session.user,
+  (req, res, next) => res.render(path.join(__dirname, "views/home"), { /*USER ID*/id: req.session.user,
     title: "title", element2:"Event2",element3: "event3"})
 
 );
