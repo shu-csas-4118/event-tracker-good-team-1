@@ -12,7 +12,7 @@
 <p> <font color="purple"> There are two ways you can be part of this awesomeness :- <br> 1] User </br> <br> 2] Developer </br> </p>
 <p> <font color= "purple"> <u> FOR OUR FIRST TIME USERS </u></font> </p>
 
-<h1> <font color="red">WELCOME!!! :sparkles: ![Alt Text](https://media.giphy.com/media/OF0yOAufcWLfi/giphy.gif) </h1>
+<span style="color:blue">some *WELCOME!!!* :sparkles: text</span>
 
 <p> Steps to sign-up 
 <li> Go to top-right of the screen </li>
