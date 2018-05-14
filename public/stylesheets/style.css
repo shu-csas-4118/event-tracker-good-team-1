@@ -1,45 +1,50 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+input .signup{
+    width: 60% !important;
+    margin: 0 auto;
 }
 
-a {
-  color: #00B7FF;
+.jumbotron{
+    padding-top: 10px !important;
 }
 
-html,body{
-  margin:0;
-  padding:0;
+.nav-bar-li:hover{
+    background-color: lightgrey;
 }
-ul {
-  list-style-type: none;
-  margin: 0;
 
-  padding: 0;
+/*ACCOUNT CSS ---------------------------------------------*/
+
+.jumbotron-account{
+  width: 70%;
+  margin: 20px auto;
+  background-color: rgba(0,0,0,.05) !important;
+  border: 2px solid rgba(0,0,0,.5);
+}
+
+.event-panel{
+  margin-top: 10px;
+  margin-bottom: 20px;
+  color: black;
+  padding: 30px 30px;
+  border: 3px solid mediumvioletred;
+  border-radius: 10px;
+  background-color: white;
+  display:table;
+  width:100%;
+}
+
+.cancel {
+  background: transparent no-repeat;
+  border: 2px solid #000000;
+  border-radius: 5px;
+  cursor:pointer;
   overflow: hidden;
-  background-color: rgb(67, 133, 155);
+  outline:none;
+  font: 25px bold;
+  font-family: Arial, serif;
 }
 
-li {
-  float: left;
-}
-
-li a {
-  display: block;
-  color: white;
+.button-wrapper {
+  display: table-cell;
+  vertical-align: middle;
   text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-}
-
-#banner{
-
-  background-color: rgb(54, 107, 124);
-  color:  rgb(255, 255, 255);
-  text-align: center;
-  font-size: 25pt;
-}
-
-li a:hover {
-    background-color: rgb(54, 107, 124);
 }

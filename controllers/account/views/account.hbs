@@ -1,0 +1,44 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="tabbable" id="tabs-990541">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a href="#panel-287616" data-toggle="tab">Active Events</a>
+          </li>
+          <li>
+            <a href="#panel-21805" data-toggle="tab">Change Password</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane active" id="panel-287616">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="jumbotron jumbotron-account">
+                  <h2>Current Registered Events</h2><br>
+                  {{#each events}}
+                    <div class="event-panel">
+                      <h3 style="margin-top: 0">{{this.name}}</h3>
+                      <ul>
+                        <li>
+                          Time: {{this.time}}
+                        </li>
+                        <li>
+                          Venue: {{this.place}}
+                        </li>
+                      </ul>
+                      <div class="button-wrapper"><button class="cancel">X</button></div>
+                    </div>
+                  {{/each}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane" id="panel-21805">
+            <h3>Anything else goes here...</h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

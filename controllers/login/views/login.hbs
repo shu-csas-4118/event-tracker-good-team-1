@@ -1,0 +1,55 @@
+    <div class="container-fluid">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <h3>Sign In</h3><br>
+                <form role="form" action="/login" method="post">
+                    <div class="form-group">
+                        <label for="username">
+                            Username
+                        </label>
+                        <input type="text" class="form-control signup" name="username"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="password">
+                            Password
+                        </label>
+                        <input type="password" class="form-control signup" name="password"/>
+                    </div>
+                    <button type="submit" class="btn btn-default">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <h3 style="text-align: left">Register</h3><br>
+                <form role="form" action="/login/register" method="post">
+                    <div class="form-group">
+                        <label for="firstName1">
+                            Username:
+                        </label>
+                        <input type="text" class="form-control" name="username"/>
+                    </div>
+                    <div class="form-group">
+
+                        <label for="password1">
+                            Password
+                        </label>
+                        <input type="password" class="form-control" name="password"/>
+                    </div>
+                    <div class="form-group">
+                        <label for="address">
+                            Address
+                        </label>
+                        <input class="form-control" name="address" />
+                    </div>
+                    <button type="submit" class="btn btn-default">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

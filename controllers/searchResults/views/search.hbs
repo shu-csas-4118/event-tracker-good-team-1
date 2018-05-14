@@ -1,0 +1,20 @@
+{{#each events}}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="jumbotron jumbotron-fluid">
+                    <h2>
+                        {{this.name}}
+                    </h2>
+                    <div>
+                        <ul style="display: block;">
+                            <li>Time: {{this.time}}</li><br>
+                            <li>Capacity: {{this.capacity}}</li><br>
+                            <li>Price: {{this.price}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{{/each}}

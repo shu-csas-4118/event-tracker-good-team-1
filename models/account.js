@@ -16,6 +16,10 @@ const AccountSchema = new Schema({
    address:{
        type: String,
        required: true
+   },
+   events:{
+      type: [Schema.Types.ObjectID],
+      required: false
    }
 });
 

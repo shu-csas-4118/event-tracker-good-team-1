@@ -1,12 +1,12 @@
-var express = require('express');
-var router = express.Router();
-//const Event = require('../../models/event').Event;
+let express = require('express');
+let router = express.Router();
+let passport = require('passport');
+let path = require('path');
 
-//var myEvent = new Event({});
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('homeViews/home', { title: "title", element2:"Event2",element3: "event3"});
-  
-});
+router.get('/',
+  (req, res, next) => res.render(path.join(__dirname, "views/home"), { /*USER ID*/id: req.session.user,
+    title: "title", element2:"Event2",element3: "event3"})
+
+);
 
 module.exports = router;

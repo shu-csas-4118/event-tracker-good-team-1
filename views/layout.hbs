@@ -1,80 +1,78 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>{{title}}</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-     <head>
-<style>
-  html,body{
-    margin:0;
-    padding:0;
-  }
-ul {
-    list-style-type: none;
-    margin: 0;
-    
-    padding: 0;
-    overflow: hidden;
-    background-color: rgb(67, 133, 155);
-}
-
-li {
-    float: left;
-}
-
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-}
-
-#banner{
-    
-    background-color: rgb(54, 107, 124);
-    color:  rgb(255, 255, 255);
-    text-align: center;
-    font-size: 25pt;
-}
-
-li a:hover {
-    background-color: rgb(54, 107, 124);
-}
-
-</style>
+      <title>{{title}}</title>
+      <link rel="stylesheet" type='text/css' href="/stylesheets/style.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
   </head>
+
   <body>
-   
+  <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
 
-<div id="banner">
-  <br>
-   Events Tracker
-  <br>
-  <br>
- 
-</div>
-<ul >
-  <li ><a class="active" href="/">Home</a></li>
-  <li ><a href="/login">Login</a></li>
-   <li ><a href="/events">Events</a></li>
-   <li style="float:right; padding-right:5%; padding-top:1%; padding-bottom:1%"> <div class="btn-group">
-    <button onclick="myclick();" class="btn btn-primary active">
-        <i class="glyphicon glyphicon-search" aria-hidden="true"></i> Search
-    </button></li>
-  <li style="float:right; padding-right:5%; padding-top:1%; padding-bottom:1%"> <input id="searchBar"class="form-control" value= "Search"></input></li>
-  
-</ul>
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span>
+          </button> <a class="navbar-brand" href="https://www.racket-lang.org">EventTracker v1</a>
+      </div>
 
-    {{{body}}}
+      <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+              <li class="nav-bar-li">
+                  <a href="/">Home</a>
+              </li>
+              <li class="nav-bar-li">
+                  <a href="/events">Events</a>
+              </li>
+          </ul>
+          <form class="navbar-form navbar-left" role="search">
+              <div class="form-group">
+                  <input class="form-control" type="text" />
+              </div>
+              <button type="submit" class="btn btn-default">
+                  Search
+              </button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">My Account<strong class="caret"></strong></a>
+                  {{#unless user}}
+                      <ul class="dropdown-menu">
+                          <li class="nav-bar-li">
+                              <a href="/login">Log In</a>
+                          </li>
+                          <li class="nav-bar-li">
+                              <a href="/login">Sign Up</a>
+                          </li>
+                          <li class="divider">
+                          </li>
+                          <li>
+                              <a href="#">Logout</a>
+                          </li>
+                      </ul>
+                  {{else}}
+                    <ul class="dropdown-menu">
+                      <li style="text-align: center">
+                        <p>Hello, {{user.username}}</p>
+                      </li>
+                      <li class="divider"></li>
+                      <li>
+                        <a href="/account">Account Settings</a>
+                      </li>
+                      <li>
+                        <a href="#">My Registered Events</a>
+                      </li>
+                    </ul>
+                  {{/unless}}
+              </li>
+          </ul>
+      </div>
+  </nav>
+  <div class="container-fluid">
+      <div class="row">{{{body}}}</div>
+  </div>
   </body>
 </html>
-<script>
-  function myclick()
-{
-    var search = document.getElementById("searchBar").value;
-    location.href = "/events?search="+ search +"";
-    alert("hello");
-} 
-</script>
+
