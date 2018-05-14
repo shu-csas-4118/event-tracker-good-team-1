@@ -3,7 +3,7 @@ const path = require('path');
 const router = express.Router();
 
 router.get('/', function(req, res){
-  //TODO: Actually pass the user's data
+  console.log(req.user.id);
   let test = [
     {name: "Comp Sci Talk", time: new Date(), place: "Seton Hall University"},
     {name: "Jesse McCartney Concert", time: new Date(), place: "Richie Reagan Athletic Center"},

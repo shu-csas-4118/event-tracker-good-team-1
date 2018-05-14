@@ -16,10 +16,13 @@ let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
 let account = require('./controllers/account/index');
+let api = require('./controllers/eventAPI/index');
 
-//Import utilities
+//Import utilities / models
 let passport = require('./models/utils/passport');
 let mongoose = require('./models/db');
+let Account = require('./models/account');
+let Event = require('./models/event');
 
 //Use statements
 app.use(logger('dev'));
@@ -50,6 +53,7 @@ app.use('/', homepage);
 app.use('/login', login);
 app.use('/events', searchResults);
 app.use('/account', account);
+app.use('/api', api);
 
 //Launch app
 const port = process.env.PORT || 8080;

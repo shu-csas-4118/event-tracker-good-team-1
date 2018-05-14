@@ -3,6 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const path = require('path');
 const Account = require('../../models/account');
+const mongoose = require('../../models/db');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -30,6 +31,7 @@ router.post('/register', function(req, res, next){
             acct.username = body.username;
             acct.password = body.password;
             acct.address = body.address;
+            acct.events.push(mongoose.Types.ObjectId('5af3de6bbd6a793388bdf1fe'));
 
             console.log(`Adding user ${body.username} to Account store.`);
             acct.save();
