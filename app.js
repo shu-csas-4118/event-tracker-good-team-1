@@ -15,6 +15,7 @@ let homepage = require('./controllers/home/index');
 let login = require('./controllers/login/index');
 let register = require('./controllers/register/index');
 let searchResults = require('./controllers/searchResults/index');
+let eventPage = require('./controllers/eventPage/index');
 let account = require('./controllers/account/index');
 let api = require('./controllers/eventAPI/index');
 
@@ -53,6 +54,7 @@ app.use('/', homepage);
 app.use('/login', login);
 app.use('/events', searchResults);
 app.use('/account', account);
+app.use('/eventPage', eventPage);
 app.use('/api', api);
 
 //Launch app
