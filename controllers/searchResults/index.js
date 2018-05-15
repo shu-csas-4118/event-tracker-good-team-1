@@ -12,6 +12,7 @@ router.get('/', function(req, res, next) {
     }
     else res.status(200).render(path.join(__dirname, 'views/search'), {events: events});
   });
+
 });
 
 router.get('/:event', function(req, res, next){
