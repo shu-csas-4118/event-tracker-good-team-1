@@ -19,7 +19,7 @@ const EventSchema = new Schema({
         required: true,
     },
     place:{
-        type: {},
+        type: String,
         required: true
     },
     price:{

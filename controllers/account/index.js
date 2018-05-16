@@ -18,8 +18,4 @@ router.get('/', function(req, res){
   });
 });
 
-router.put('/', function(req, res){
-  //TODO: update the user's list of events.
-});
-
 module.exports = router;

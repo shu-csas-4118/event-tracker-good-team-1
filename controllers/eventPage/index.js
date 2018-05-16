@@ -47,18 +47,29 @@ router.post('/register', function(req, res, next){
 
     Account.findByIdAndUpdate(req.user.id, { $push: {events: ticket._id}}, () => console.log("updated the account."));
 
-    try{
-        console.log("Sending emails...");
-        let mail = require('gmail-send')({
-            user: "eventtracker2@gmail.com",
-            pass: "Adriano14",
-            to: (user.address === ticket.email) ? user.address : [user.address, ticket.email],
-            subject: "Your Ticket Itinerary",
-            text: "You purchased a ticket. Nice."
-        })({});
-    }catch(e){
-        console.error("Couldn't send the email properly!");
-    }
+    Event.findById(ticket.eventId, (err, event) => {
+        if(err)
+            console.error(err);
+        else {
+            try {
+                console.log("Sending emails...");
+                let mail = require('gmail-send')({
+                    user: "eventtracker2@gmail.com",
+                    pass: "Adriano14",
+                    to: (user.address === ticket.email) ? user.address : [user.address, ticket.email],
+                    subject: "Your Ticket Itinerary",
+                    text: `Hello, ${user.username}. This is to confirm your recent purchase.\n
+                    The event is ${event.name}\n
+                    It will be located at ${event.place}\n
+                    You spent ${event.price} dollars`
+                })({});
+            } catch (e) {
+                console.error("Couldn't send the email properly!");
+            }
+        }
+    });
+
+
 
     res.redirect('/');
 });
