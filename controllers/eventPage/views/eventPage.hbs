@@ -12,11 +12,11 @@
 <h1>{{event.name}}</h1>
 <body>
 
-
 <div  id="results">
     <table>
     <tr><td><h4>Name: {{event.name}}</h4></td></tr>
      <tr><td><h4>Time: {{event.time}}</h4></td></tr>
+     <tr><td><h4>Place: {{event.place}}</h4></td></tr>
      <tr><td><h4>Description: {{event.capacity}}</h4></td></tr>
      <tr><td>
          <div id="register">
@@ -55,6 +55,7 @@
             <td> <input name="state"class="form-control"></input></td></tr>
             <tr><td>Hotels:</td>
             <td><select class="form-control">
+                <option value="none">N/A</option>
                 {{#each hotels}}
                 <option value="{{name}}">{{name}}</option>
                 
@@ -78,6 +79,7 @@
 </table>
 <div style="display:none">
     <input name="idnum"class="form-control" value="{{event._id}}" ></input>
+    <input name="useridnum"class="form-control" value="{{user.id}}" ></input>
 </div>
 </form>
         </div>
@@ -114,6 +116,7 @@
         var numdigits = input.length;
         var parity = numdigits % 2;
 
+        if(numdigit <=11) return false;
         for(var i=0; i < numdigits; i++) {
         var digit = parseInt(input.charAt(i))
         if(i % 2 == parity) digit *= 2;
