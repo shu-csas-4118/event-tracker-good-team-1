@@ -19,6 +19,7 @@ let eventPage = require('./controllers/eventPage/index');
 let myEventPage = require('./controllers/myRegisteredEvents/index');
 let account = require('./controllers/account/index');
 let api = require('./controllers/eventAPI/index');
+let createEvent = require('./controllers/createEvent/index');
 
 //Import utilities / models
 let passport = require('./models/utils/passport');
@@ -58,6 +59,7 @@ app.use('/account', account);
 app.use('/eventPage', eventPage);
 app.use('/myEvents', myEventPage);
 app.use('/api', api);
+app.use('/createEvent', createEvent);
 
 //Launch app
 const port = process.env.PORT || 8080;

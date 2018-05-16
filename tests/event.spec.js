@@ -23,7 +23,7 @@ describe('Tests for event creation', () => {
 			time: new Date('2019-04-13'),
 			capacity: 1000,
 			attendees: [],
-			place: {},
+			place: "Coachella Valley, California, 42069",
 			price: 440
 		});
 
