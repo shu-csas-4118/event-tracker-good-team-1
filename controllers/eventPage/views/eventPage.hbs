@@ -28,7 +28,7 @@
 </div>
 <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
-    
+    <form action="/eventPage/register" method="post" role="form">
       <!-- Modal content-->
       <div class="modal-content">
         <div class="modal-header">
@@ -36,14 +36,48 @@
           <h4 class="modal-title">Modal Header</h4>
         </div>
         <div class="modal-body">
-          <p>Are you sure you want to register?</p>
+          
+          <table >
+            
+            <tr><td>First Name:</td>
+            <td> <input name="firstName" class="form-control"></input></td></tr>
+
+            <tr><td>Last Name:</td>
+            <td> <input name="lastName"class="form-control"></input></td></tr>
+
+            <tr><td>Street Address:</td>
+            <td> <input name="address"class="form-control"></input></td></tr>
+
+            <tr><td>City:</td>
+            <td> <input name="city"class="form-control"></input></td></tr>
+
+            <tr><td>State:</td>
+            <td> <input name="state"class="form-control"></input></td></tr>
+
+            <tr><td>Zip Code:</td>
+            <td> <input name="zipCode"class="form-control"></input></td></tr>
+
+            <tr><td>Phone Number:</td>
+            <td> <input name="phoneNumber"class="form-control"></input></td></tr>
+
+            <tr><td>Credit Card Number:</td>
+            <td> <input name="cardNumber"id="credit" onchange="validate()" class="form-control"></input></td></tr>
+            
+            <tr><td id="warning"></td>
+            <td> </td></tr>
+            <tr><td>CVV:</td>
+<td> <input class="form-control"></input></td></tr>
+</tr>
+
+</table>
+</form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default" onclick="register()" data-dismiss="modal">Register</button>
+          <button class="btn btn-default" type="submit" >Register</button>
         </div>
       </div>
-      
+      </form>
     </div>
   </div>
 </body>
@@ -53,5 +87,30 @@
     function register(){
         //document.getElementById("register").innerHTML = "Registered";
         location.href = "/register?id={{myevent.id}}";
+    }
+    function validate()
+    {
+        if(ccCheck()== false){
+            document.getElementById("warning").innerHTML = "Enter correct credit card";
+        }else {
+            document.getElementById("warning").innerHTML = "";
+        }
+        
+
+    }
+    function ccCheck()
+    {
+        var input = document.getElementById("credit").value;
+        var sum = 0;
+        var numdigits = input.length;
+        var parity = numdigits % 2;
+
+        for(var i=0; i < numdigits; i++) {
+        var digit = parseInt(input.charAt(i))
+        if(i % 2 == parity) digit *= 2;
+        if(digit > 9) digit -= 9;
+        sum += digit;
+        }
+        return (sum % 10) == 0;
     }
 </script>
