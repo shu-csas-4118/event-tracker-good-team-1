@@ -25,7 +25,7 @@ router.get('/:user_id', function(req, res){
   });
 router.post('/register', function(req, res, next){
     let body = req.body;
-   
+    let user = 
     Ticket.findOne({firstName: body.firstName}, function(error, ticket){
         if(error){
             console.error(error.message);
@@ -34,6 +34,7 @@ router.post('/register', function(req, res, next){
             tic.firstName = body.firstName;
             tic.lastName = body.lastName;
             tic.eventId = body.idnum;
+            tic.userid = body.useridnum;
             //acct.address = body.address;
             //acct.events.push(mongoose.Types.ObjectId('5af3de6bbd6a793388bdf1fe'));
 

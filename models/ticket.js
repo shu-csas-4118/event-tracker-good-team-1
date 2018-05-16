@@ -13,6 +13,11 @@ const TicketSchema = new Schema({
        max: 15,
        required: true
    },
+   userid:{
+    type: String,
+    max: 50,
+    required: false
+    },
    email:{
     type: String,
     required: false
