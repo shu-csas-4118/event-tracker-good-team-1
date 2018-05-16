@@ -37,7 +37,7 @@ router.post('/register', function(req, res, next){
     ticket.email = body.email;
     ticket.eventId = body.idnum;
     ticket.phoneNumber = body.phoneNumber;
-    ticket.username = user._id;
+    ticket.userid = user._id;
 
     try{
         ticket.save();
