@@ -53,12 +53,18 @@
 
             <tr><td>State:</td>
             <td> <input name="state"class="form-control"></input></td></tr>
-
+            <tr><td>Hotels:</td>
+            <td><select class="form-control">
+                {{#each hotels}}
+                <option value="{{name}}">{{name}}</option>
+                
+                 {{/each}}
+            </select></td></tr>
             <tr><td>Zip Code:</td>
             <td> <input name="zipCode"class="form-control"></input></td></tr>
 
             <tr><td>Phone Number:</td>
-            <td> <input name="phoneNumber"class="form-control"></input></td></tr>
+            <td> <input name="phoneNumber"class="form-control" ></input></td></tr>
 
             <tr><td>Credit Card Number:</td>
             <td> <input name="cardNumber"id="credit" onchange="validate()" class="form-control"></input></td></tr>
