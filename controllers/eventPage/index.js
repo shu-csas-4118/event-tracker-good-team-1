@@ -2,8 +2,11 @@ const express = require('express');
 const router = express.Router();
 const path = require('path');
 const Event = require('../../models/event');
+const Account = require('../../models/account');
 const Ticket = require('../../models/ticket');
 const Hotel = require('../../models/hotel');
+const mail = require('gmail-send');
+const mongoose = require('mongoose');
 
 router.get('/', function(req, res){
   Event.find({}, function(err, events){
@@ -25,27 +28,39 @@ router.get('/:user_id', function(req, res){
   });
 router.post('/register', function(req, res, next){
     let body = req.body;
-   
-    Ticket.findOne({firstName: body.firstName}, function(error, ticket){
-        if(error){
-            console.error(error.message);
-            }
-            let tic = new Ticket();
-            tic.firstName = body.firstName;
-            tic.lastName = body.lastName;
-            tic.eventId = body.idnum;
-            //acct.address = body.address;
-            //acct.events.push(mongoose.Types.ObjectId('5af3de6bbd6a793388bdf1fe'));
+    let user = req.user;
 
-            //console.log(`Adding user ${body.username} to Account store.`);
-            tic.save();
+    const ticket = new Ticket();
 
-            res.status(302).redirect('/');
-        
-    });
+    ticket.firstName = body.firstName;
+    ticket.lastName = body.lastName;
+    ticket.email = body.email;
+    ticket.eventId = body.idnum;
+    ticket.phoneNumber = body.phoneNumber;
+    ticket.username = user._id;
 
-    next();
+    try{
+        ticket.save();
+    }catch(e){
+        console.warn("Ticket could not be saved!");
+    }
+
+    Account.findByIdAndUpdate(req.user.id, { $push: {events: ticket._id}}, () => console.log("updated the account."));
+
+    try{
+        console.log("Sending emails...");
+        let mail = require('gmail-send')({
+            user: "eventtracker2@gmail.com",
+            pass: "Adriano14",
+            to: (user.address === ticket.email) ? user.address : [user.address, ticket.email],
+            subject: "Your Ticket Itinerary",
+            text: "You purchased a ticket. Nice."
+        })({});
+    }catch(e){
+        console.error("Couldn't send the email properly!");
+    }
+
+    res.redirect('/');
 });
-
 
 module.exports = router;
