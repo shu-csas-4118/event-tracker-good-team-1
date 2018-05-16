@@ -1,16 +1,20 @@
 const fs = require('fs');
+const path = require('path');
 const readline = require('readline');
 const {google} = require('googleapis');
+let gmailAPI = undefined;
+let callback = undefined;
+module.exports = undefined;
 
 // If modifying these scopes, delete credentials.json.
-const SCOPES = ['https://www.googleapis.com/auth/gmail.readonly'];
+const SCOPES = ['https://www.googleapis.com/auth/gmail.send'];
 const TOKEN_PATH = 'credentials.json';
 
 // Load client secrets from a local file.
-fs.readFile('client_secret.json', (err, content) => {
+fs.readFile(path.join(__dirname, 'client_secret.json'), (err, content) => {
     if (err) return console.log('Error loading client secret file:', err);
     // Authorize a client with credentials, then call the Google Sheets API.
-    authorize(JSON.parse(content), listLabels);
+    authorize(JSON.parse(content), globalAPI);
 });
 
 /**
@@ -69,24 +73,14 @@ function getNewToken(oAuth2Client, callback) {
  *
  * @param {google.auth.OAuth2} auth An authorized OAuth2 client.
  */
-function listLabels(auth) {
-    const gmail = google.gmail({version: 'v1', auth});
-    gmail.users.labels.list({
-        userId: 'me',
-    }, (err, {data}) => {
-        if (err) return console.log('The API returned an error: ' + err);
-        const labels = data.labels;
-        if (labels.length) {
-            console.log('Labels:');
-            labels.forEach((label) => {
-                console.log(`- ${label.name}`);
-            });
-        } else {
-            console.log('No labels found.');
-        }
-    });
-
-    gmail.users.getProfile({userId: 'me'}, {}, function (err, {data}) {
-        console.log("email: " + data.emailAddress);
-    });
+function globalAPI(auth) {
+    gmailAPI = google.gmail({version: 'v1', auth});
+    if(typeof callback === 'function')
+        callback(gmailAPI);
 }
+
+module.exports = function(cb){
+    if(typeof gmailAPI !== 'undefined')
+        callback(gmailAPI);
+    else callback = cb;
+};
