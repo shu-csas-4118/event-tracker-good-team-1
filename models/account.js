@@ -1,4 +1,4 @@
-const hash = require('./utils/hash').hash;
+const hash = require('.././utils/hash').hash;
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 

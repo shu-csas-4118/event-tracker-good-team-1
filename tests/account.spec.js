@@ -4,7 +4,7 @@ const expect = require('chai').expect;
 const mongoose = require('mongoose');
 const config = require('../config/env/development');
 const Account = require("../models/account");
-const hash = require('../models/utils/hash').hash;
+const hash = require('../utils/hash').hash;
 
 describe('Tests for user account', () => {
 

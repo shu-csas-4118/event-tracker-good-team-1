@@ -1,6 +1,6 @@
 let passport = require('passport');
 let LocalStrategy = require('passport-local').Strategy;
-let Account = require('../account');
+let Account = require('../models/account');
 
 passport.use(new LocalStrategy({}, function(username, password, next){
         Account.findOne({'username' : username}, function(error, account){

@@ -20,7 +20,7 @@ let account = require('./controllers/account/index');
 let api = require('./controllers/eventAPI/index');
 
 //Import utilities / models
-let passport = require('./models/utils/passport');
+let passport = require('./utils/passport');
 let mongoose = require('./models/db');
 let Account = require('./models/account');
 let Event = require('./models/event');
