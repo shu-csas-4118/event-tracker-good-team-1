@@ -26,41 +26,7 @@ let passport = require('./utils/passport');
 let mongoose = require('./models/db');
 let Account = require('./models/account');
 let Event = require('./models/event');
-let GMAIL = require('./utils/gmail/gmail_api');
 
-
-function sendMessage(callback) {
-    let bytes = utf8.encode("From: John Doe <jdoe@machine.example> \n" +
-        "To: Mary Smith <adriano.soares@student.shu.edu> \n" +
-        "Subject: Saying Hello \n" +
-        "Date: Fri, 21 Nov 1997 09:55:06 -0600 \n" +
-        "Message-ID: <1234@local.machine.example>\n" +
-        "\n" +
-        "This is a message just to say hello. So, \"Hello\".");
-
-    let base64EncodedEmail = Base64.encode(bytes);
-
-    GMAIL(function (api) {
-        let req = api.users.messages.send({
-            userId: 'me',
-            resource: {
-                raw: base64EncodedEmail
-            }
-        });
-
-        try{
-            req.execute();
-        }catch(e){
-            console.log("Sent the email");
-        }
-
-
-
-
-    });
-}
-
-sendMessage();
 //Use statements
 app.use(logger('dev'));
 app.use(bodyParser.json());

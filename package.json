@@ -13,6 +13,7 @@
     "debug": "~2.6.9",
     "express": "~4.15.5",
     "express-session": "^1.15.6",
+    "gmail-send": "^1.2.14",
     "googleapis": "^27.0.0",
     "hbs": "~4.0.1",
     "js-base64": "^2.4.3",
